@@ -22,7 +22,6 @@
     #gc-carousel-{{ section.id }} {
         min-height: {{ section.settings.height }}px;
     }
-
     @media screen and (max-width: 640px) {
         #gc-carousel-{{ section.id }} {
             min-height: auto;
@@ -30,8 +29,7 @@
     }
 </style>
 
-<div id="gc-carousel-{{ section.id }}" class="{{ carousel_class }}"
-     data-flickity-options='{ "imagesLoaded": true, "adaptiveHeight": true, "autoPlay": {{ autoplay_rate }}, "pageDots": {{ section.settings.show_page_dots | json }}, "prevNextButtons": {{ section.settings.show_prev_next_buttons | json }} }'>
+<div id="gc-carousel-{{ section.id }}" class="{{ carousel_class }}" data-flickity-options='{ "imagesLoaded": true, "adaptiveHeight": true, "autoPlay": {{ autoplay_rate }}, "pageDots": {{ section.settings.show_page_dots | json }}, "prevNextButtons": {{ section.settings.show_prev_next_buttons | json }} }'>
 
     {% assign youtube_slides = 0 %}
     {% assign vimeo_slides = 0 %}
@@ -49,21 +47,25 @@
 
                 <style>
                     #section-block-{{ block.type }}-{{ block.id }} .item-inner {
-                    {%- if block.settings.bg_color != blank -%} background-color: {{ block.settings.bg_color }};
-                    {%- endif -%} border-radius: 2px;
+                    {%- if block.settings.bg_color != blank -%}
+                        background-color: {{ block.settings.bg_color }};
+                    {%- endif -%}
+                        border-radius: 2px;
                         display: table;
                         line-height: 0;
                         position: relative;
                         text-align: center;
                         transform: translateZ(0px);
                         width: 100%;
-                    {% unless block.settings.show_image_only %} height: {{ section.settings.height }}px;
-                    {% if block.settings.image != blank %} background-repeat: no-repeat;
+                    {% unless block.settings.show_image_only %}
+                        height: {{ section.settings.height }}px;
+                    {% if block.settings.image != blank %}
+                        background-repeat: no-repeat;
                         background-position: center center;
                         background-size: cover;
-                    {% endif %}{% endunless %}
+                    {% endif %}
+                    {% endunless %}
                     }
-
                     #section-block-{{ block.type }}-{{ block.id }} .item-inner-link {
                         height: 100%;
                         left: 0;
@@ -72,9 +74,8 @@
                         width: 100%;
                         z-index: 1;
                     }
-
                     #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay {
-                        background: rgba(0, 0, 0,{{ overlay_bg_opacity }});
+                        background: rgba(0,0,0,{{ overlay_bg_opacity }});
                         display: table-cell;
                         font-weight: 300;
                         height: 100%;
@@ -83,90 +84,82 @@
                         width: 100%;
                         vertical-align: middle;
                     }
-
                     #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay-content {
                         backface-visibility: hidden;
                         display: inline-block;
                     }
-
                     #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay-line {
                         line-height: 1em;
                         letter-spacing: 0.1em;
                     }
-
                     #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay-line.line-1 {
                         color: {{ block.settings.overlay_line_1_color }};
                         font-family: {% if block.settings.overlay_line_1_font_custom != blank %}'{{ block.settings.overlay_line_1_font_custom }}',{{ block.settings.overlay_line_1_font }}{% else %}{{ block.settings.overlay_line_1_font }}{% endif %};
                         font-size: {{ block.settings.overlay_line_1_font_size }}px;
                     }
-
                     #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay-line.line-2 {
                         color: {{ block.settings.overlay_line_2_color }};
                         font-family: {% if block.settings.overlay_line_2_font_custom != blank %}'{{ block.settings.overlay_line_2_font_custom }}',{{ block.settings.overlay_line_2_font }}{% else %}{{ block.settings.overlay_line_2_font }}{% endif %};
                         font-size: {{ block.settings.overlay_line_2_font_size }}px;
                     }
-
                     #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay-line.line-3 {
                         color: {{ block.settings.overlay_line_3_color }};
                         font-family: {% if block.settings.overlay_line_3_font_custom != blank %}'{{ block.settings.overlay_line_3_font_custom }}',{{ block.settings.overlay_line_3_font }}{% else %}{{ block.settings.overlay_line_3_font }}{% endif %};
                         font-size: {{ block.settings.overlay_line_3_font_size }}px;
                     }
-
                     #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay-separator {
                         height: 1px;
                         margin: 0.438rem auto;
-                    {% if block.settings.overlay_separator_line_width != '0' %} background-color: {{ block.settings.overlay_line_2_color }};
+                    {% if block.settings.overlay_separator_line_width != '0' %}
+                        background-color: {{ block.settings.overlay_line_2_color }};
                         margin: 1.125rem auto;
                         opacity: 0.3;
                         width: {{ block.settings.overlay_separator_line_width }};
                     {% endif %}
                     }
-
                     {% if block.settings.overlay_line_1_text == blank %}
-                    #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay-separator:first-of-type {
+                    #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay-separator:first-of-type{
                         display: none;
                     }
-
                     {% endif %}
                     {% if block.settings.overlay_line_3_text == blank %}
-                    #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay-separator:last-of-type {
+                    #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay-separator:last-of-type{
                         display: none;
                     }
-
                     {% endif %}
                     @media screen and (max-width: 640px) {
                         #section-block-{{ block.type }}-{{ block.id }} .item-inner {
-                        {% unless block.settings.show_image_only %} height: 300px;
+                        {% unless block.settings.show_image_only %}
+                            height: 300px;
                         {% endunless %}
                         }
-
                         #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay-line.line-1,
                         #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay-line.line-3 {
                             font-size: 18px;
                         }
-
                         #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay-line.line-2 {
                             font-size: 24px;
                         }
-
                         #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay {
                             padding: 10px;
                         }
-
                         #section-block-{{ block.type }}-{{ block.id }} .item-inner-overlay-separator {
                             height: 1px;
                             margin: 0.438rem auto;
-                        {% if block.settings.overlay_separator_line_width != '0' %} margin: 0.5rem auto;
+                        {% if block.settings.overlay_separator_line_width != '0' %}
+                            margin: 0.5rem auto;
                         {% endif %}
                         }
                     }
-
                     .no-js #section-block-{{ block.type }}-{{ block.id }} .item-inner {
-                    {% unless block.settings.show_image_only %}{% if block.settings.image != blank %} background-image: url("{{ block.settings.image | img_url: '1220x' }}");
+                    {% unless block.settings.show_image_only %}
+                    {% if block.settings.image != blank %}
+                        background-image: url("{{ block.settings.image | img_url: '1220x' }}");
                         background-repeat: no-repeat;
                         background-position: center center;
                         background-size: cover;
-                    {% endif %}{% endunless %}
+                    {% endif %}
+                    {% endunless %}
                     }
                 </style>
 
@@ -210,8 +203,7 @@
                                 {% endif %}
 
                                 {% if block.settings.link_url != blank and block.settings.button_1_text != blank %}
-                                    <a href="{{ block.settings.link_url }}"
-                                       class="margin-top-150 button">{{ block.settings.button_1_text }}</a>
+                                    <a href="{{ block.settings.link_url }}" class="margin-top-150 button">{{ block.settings.button_1_text }}</a>
                                 {% endif %}
 
                             </div>
@@ -229,23 +221,24 @@
 
                 <style>
                     #section-block-{{ block.type }}-{{ block.id }} .external-video-container {
-                    {% unless block.settings.responsive %} height: {{ section.settings.height }}px;
-                    {% endunless %} background-color: {{ block.settings.background_color }};
+                    {% unless block.settings.responsive %}
+                        height: {{ section.settings.height }}px;
+                    {% endunless %}
+                        background-color: {{ block.settings.background_color }};
                     }
-
                     #section-block-{{ block.type }}-{{ block.id }} .external-video-container-position {
-                    {% if block.settings.responsive %} padding-top: 56.25%;
-                    {% else %} height: 100%;
+                    {% if block.settings.responsive %}
+                        padding-top: 56.25%;
+                    {% else %}
+                        height: 100%;
                     {% endif %}
                     }
-
                     {% unless block.settings.responsive %}
                     @media screen and (max-width: 640px) {
                         #section-block-{{ block.type }}-{{ block.id }} .external-video-container {
                             height: 300px;
                         }
                     }
-
                     {% endunless %}
                 </style>
 
@@ -281,17 +274,11 @@
 </div>
 
 {% if youtube_slides > 0 %}
-    <script>if (!document.getElementById("youtube-player-api")) {
-            var script = document.createElement("script");
-            script.id = "youtube-player-api", script.src = "https://www.youtube.com/player_api", document.head.appendChild(script)
-        }</script>
+    <script>if(!document.getElementById("youtube-player-api")){var script=document.createElement("script");script.id="youtube-player-api",script.src="https://www.youtube.com/player_api",document.head.appendChild(script)}</script>
 {% endif %}
 
 {% if vimeo_slides > 0 %}
-    <script>if (!document.getElementById("vimeo-player-api")) {
-            var script = document.createElement("script");
-            script.id = "vimeo-player-api", script.src = "https://player.vimeo.com/api/player.js", document.head.appendChild(script)
-        }</script>
+    <script>if(!document.getElementById("vimeo-player-api")){var script=document.createElement("script");script.id="vimeo-player-api",script.src="https://player.vimeo.com/api/player.js",document.head.appendChild(script)}</script>
 {% endif %}
 
 {% render 'section-close' %}
