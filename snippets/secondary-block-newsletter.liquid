@@ -1,0 +1,25 @@
+<div class="margin-bottom">
+  {{ block.settings.signup_message }}
+</div>
+
+{% form 'customer' %}
+
+  {% render 'form-errors', form: form %}
+
+  {% if form.posted_successfully? %}
+    <div class="form-success panel green text-center font-size-14">
+      {{ 'newsletter.success_message' | t }}
+    </div>
+  {% else %}
+    <input type="hidden" name="contact[tags]" value="newsletter">
+    <div class="table">
+      <div class="cell">
+        <input type="email" name="contact[email]" value="{{ form.email }}" placeholder="{{ 'newsletter.email_field_placeholder' | t }}">
+      </div>
+      <div class="cell">
+        <button type="submit" class="button">{{ 'newsletter.submit' | t }}</button>
+      </div>
+    </div>
+  {% endif %}
+
+{% endform %}

@@ -1,0 +1,160 @@
+<!doctype html>
+
+{% assign html_class = 'no-js' | append: ' ' | append: template %}
+{% assign cdn = 'https://cdnjs.cloudflare.com/ajax/libs/' %}
+
+{% if template contains '.' %}
+  {% assign template_classes = template | split: '.' %}
+  {% assign template_classes_handled = template | replace: '.', '-' %}
+  {% assign html_class = template_classes[0] | append: ' ' | append: template_classes_handled %}
+{% endif %}
+
+{% if template contains '/' %}
+  {% assign template_classes = template | split: '/' %}
+  {% assign template_classes_handled = template | replace: '/', '-' %}
+  {% assign html_class = template_classes[0] | append: ' ' | append: template_classes_handled %}
+{% endif %}
+
+{% assign page_title_handle = page_title | handle %}
+{% assign html_class = html_class | append: ' ' | append: page_title_handle %}
+{% assign template_type = template %}
+
+{% if template contains '.' %}
+  {% assign template_parts = template | split: '.' %}
+  {% assign template_type = template_parts[0] %}
+{% endif %}
+
+<!-- Proudly powered by Shopify - https://shopify.com -->
+
+<html class="{{ html_class }}" lang="{{ shop.locale }}">
+
+  <head>
+<!-- Added by AVADA SEO Suite -->
+{% include 'avada-seo' %}
+<!-- /Added by AVADA SEO Suite -->
+
+       {{ 'theme-vendor.css' | asset_url | stylesheet_tag }}
+    {{ 'theme.css' | asset_url | stylesheet_tag }}
+  
+ 
+
+    {% render 'meta', template_type: template_type %}
+    {% render 'meta-social', template_type: template_type %}
+    {% render 'preload-fonts' %}
+
+    {% comment %} Speedimize {% endcomment %}{% if content_for_header contains "Shopify.designMode" %}{{ content_for_header }}{% else %}{% include 'modified_content-for-header' %}{% endif %}{% comment %}{{ content_for_header }}{% endcomment %}
+
+   
+
+   
+
+    {% render 'lazysizes', cdn: cdn %}
+
+    {% render 'theme-js-config', template_type: template_type %}
+    
+ 
+    <script src="{{ 'theme-vendor.js' | asset_url }}"></script>
+    <script src="{{ 'shopify_common.js' | asset_url }}" async></script>
+    
+
+    {% if template contains 'customers' %}
+    <script src="{{ 'customer_area.js' | asset_url }}" defer></script>
+    {% endif %}
+
+    {% include 'judgeme_core' %}
+  
+  
+{%- render 'macas-aovbooster' -%}
+{% include 'cscode_discount' %}
+{% include 'swift_core' %} 
+   
+{% include 'hulk_po_vd.liquid' %}</head>
+
+  <body  >
+    
+
+    {% render 'facebook-sdk' %}
+
+    {% section 'header' %}
+
+    <div id="app-body">
+      <div id="app-body-inner">
+        {{ content_for_layout }}
+      </div>
+    </div>
+
+    {% section 'footer' %}
+
+    <div id="overlay-background"></div>
+
+    {{ '/services/javascripts/currencies.js' | script_tag }}
+    {{ 'jquery.currencies.min.js' | asset_url | script_tag }}
+    {{ 'theme.js' | asset_url | script_tag }}
+    {{ 'theme-custom.js' | asset_url | script_tag }}
+
+    <script type="text/javascript" async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+    <script>
+      (function ($) {
+        $(document).ready(function () {
+          var loading = $('#loading');
+          loading.css({
+            'opacity': '0',
+            'visibility': 'hidden'
+          });
+          setTimeout(function () {
+            loading.hide();
+          }, 1000);
+        });
+      }(jQuery.noConflict()));
+      (function ($) {
+        var meta = $('head meta[name="viewport"]');
+        $("input, select, textarea").on('touchstart', function() {
+          meta.attr('content', 'width=device-width, initial-scale=1, user-scalable=0');
+        });
+        $("input, select, textarea").on('touchend', function() {
+          setTimeout(function () {
+            meta.attr('content', 'width=device-width, initial-scale=1, user-scalable=1');
+          }, 100);
+        });
+      }(jQuery.noConflict()));
+      
+      jQuery.event.special.touchstart = {
+    setup: function( _, ns, handle ) {
+        this.addEventListener("touchstart", handle, { passive: !ns.includes("noPreventDefault") });
+    	}
+	};
+	  jQuery.event.special.touchmove = {
+    setup: function( _, ns, handle ) {
+        this.addEventListener("touchmove", handle, { passive: !ns.includes("noPreventDefault") });
+        }
+	};
+	  jQuery.event.special.wheel = {
+    setup: function( _, ns, handle ){
+        this.addEventListener("wheel", handle, { passive: true });
+    	}
+	};
+	  jQuery.event.special.mousewheel = {
+    setup: function( _, ns, handle ){
+        this.addEventListener("mousewheel", handle, { passive: true });
+    	}
+	};
+    </script>
+
+  
+
+
+{% include 'appikon-discounts' %}
+    {% if template_type == 'index' or template_type == 'product' %}
+      {{ 'https://cdn.shopify.com/shopifycloud/shopify-plyr/v1.0/shopify-plyr.css' | stylesheet_tag }}
+      {{ 'https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css' | stylesheet_tag }}
+    {% endif %}
+  <script type="text/javascript" src="//code-sa1.jivosite.com/widget/klpWnRHKnq" async></script>
+      {{ 'fonts.css' | asset_url | stylesheet_tag }}
+      {{ 'theme-custom.css' | asset_url | stylesheet_tag }}
+    
+  
+<script data-spm="{{ shop.metafields.speedimize.hashKey }}|{{ theme.id }}" src="{{ 'speedimize.js' | asset_url }}"></script>
+   
+</body>
+</html>

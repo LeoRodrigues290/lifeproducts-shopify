@@ -1,0 +1,45 @@
+
+
+{% render 'breadcrumbs' %}
+
+{% render 'content-open', class: 'column-max no-padding-top' %}
+
+  {% section 'product-template' %}
+{% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
+  {% section 'product-recommendations' %}
+
+<div id="dr-testimonials"></div>
+
+{% if product.metafields.my_fields.url_v_deo_1 %}
+
+<div class="videos-content">
+    <div class="box">
+        <iframe width="410" height="230" src="{{ product.metafields.my_fields.url_v_deo_1 }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+        <h2>{{ product.metafields.my_fields.t_tulo_v_deo_1 }}</h2>
+        <p>{{ product.metafields.my_fields.descri_o_v_deo_1 }}</p>
+    </div>
+  
+  <div class="box">
+        <iframe width="410" height="230" src="{{ product.metafields.my_fields.url_v_deo_2 }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+
+        <h2>{{ product.metafields.my_fields.t_tulo_v_deo_2 }}</h2>
+        <p>{{ product.metafields.my_fields.descri_o_v_deo_2 }}</p>
+    </div>
+  
+   <div class="box">
+        <iframe width="410" height="230" src="{{ product.metafields.my_fields.url_v_deo_3 }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        </iframe>
+
+        <h2>{{ product.metafields.my_fields.t_tulo_v_deo_3 }}</h2>
+        <p>{{ product.metafields.my_fields.descri_o_v_deo_3 }}</p>
+    </div>
+ 
+</div>
+ {% endif %}
+
+{% render 'content-close' %}
+
+<!--Start Stamped.io Auto Installation--><div id="stamped-main-widget" class="stamped-main-widget" data-widget-style="standard" data-product-id="{{ product.id }}" data-name="{{ product.title | escape }}" data-url="{{ shop.url }}{{ product.url }}" data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-description="{{ product.description | escape }}" data-product-sku="{{product.handle}}" data-product-type="{{product.type}}" data-widget-language="{{shop.locale}}">{{ product.metafields.stamped.reviews }}</div><!--End Stamped.io Auto Installation-->
+<div class="aiod-bundle-discount-wrap" ></div>
